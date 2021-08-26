@@ -1,0 +1,114 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    
+    "parameters": {
+        "storageName": {
+            "type": "string"
+        },
+        "synapseName": {
+            "type": "string"
+        }
+    },
+
+    "variables": {
+        "location": "[resourceGroup().location]",
+        "pccsaStorageName": "[replace(replace(toLower(parameters('storageName')),'-',''),'_','')]",
+        "pccsaStorageContainer": "pccsa",    
+        "StorageBlobDataContributor": "ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+    },
+
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "name": "[variables('pccsaStorageName')]",
+            "location": "[variables('location')]",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "isHnsEnabled": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('pccsaStorageName'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('pccsaStorageName'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": false
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('pccsaStorageName'), '/default/', variables('pccsaStorageContainer'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('pccsaStorageName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('pccsaStorageName'))]"
+            ],
+            "properties": {
+                "publicAccess": "None"
+            }
+        },
+        {
+            "scope": "[concat('Microsoft.Storage/storageAccounts/', variables('pccsaStorageName'))]",
+            "type": "Microsoft.Authorization/roleAssignments",
+            "apiVersion": "2020-04-01-preview",
+            "name": "[guid(uniqueString(variables('pccsaStorageName')))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('pccsaStorageName'))]"
+            ],           
+            "location": "[variables('location')]",
+            "properties": {
+              "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', variables('StorageBlobDataContributor'))]",
+              "principalId": "[reference(resourceId('Microsoft.Synapse/workspaces', parameters('synapseName')), '2019-06-01-preview', 'Full').identity.principalId]",
+              "principalType": "ServicePrincipal"
+            }
+        },
+        { 
+            "apiVersion": "2020-10-01",
+            "name": "pid-436d2bea-3759-4494-b63b-aa95d0407e1f",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": []
+                }
+            }
+        }
+    ]
+}
+
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Fill values in here.  They will not be synced with repo 
+# and will be sourced into the main bash script.
+location=""
+client_name=""
+client_id=""
+client_secret=""

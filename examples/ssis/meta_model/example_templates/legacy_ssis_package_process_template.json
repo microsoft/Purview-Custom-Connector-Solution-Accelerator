@@ -1,0 +1,47 @@
+{
+	"typeName": "legacy_ssis_package_process",
+	"attributes": {
+		"outputs": [
+			{
+				"uniqueAttributes": {
+					"qualifiedName": ""
+				}
+			}
+		],
+		"inputs": [
+			{
+				"uniqueAttributes": {
+					"qualifiedName": ""
+				}
+			}
+		],
+		"qualifiedName": "",
+		"name": "SSIS_Movie_Loader",
+		"columnMapping": ""
+	},
+	"status": "ACTIVE",
+	"relationshipAttributes": {
+		"outputs": [
+			{
+				"qualifiedName": "",
+				"entityStatus": "ACTIVE",
+				"displayText": ""
+			}
+		],
+		"parent": {
+			"typeName": "legacy_ssis_package",
+			"displayText": "SSIS Movie Loader Package",
+			"relationshipType": "legacy_ssis_package_process_parent",
+			"relationshipAttributes": {
+				"typeName": "legacy_ssis_package_process_parent"
+			}
+		},
+		"inputs": [
+			{
+				"qualifiedName": "",
+				"entityStatus": "ACTIVE",
+				"displayText": ""
+			}
+		]
+	}
+}

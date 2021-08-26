@@ -1,0 +1,125 @@
+{
+    "name": "Converte TAG DB XML Metadata to Json",
+    "properties": {
+        "activities": [
+            {
+                "name": "Convert TAG DB XML METADATA to JSON",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "XmlSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true,
+                            "wildcardFolderPath": {
+                                "value": "@pipeline().parameters.blob_xml_path",
+                                "type": "Expression"
+                            },
+                            "wildcardFileName": "tag-db-xml-sample.xml",
+                            "enablePartitionDiscovery": false
+                        },
+                        "formatSettings": {
+                            "type": "XmlReadSettings",
+                            "validationMode": "none",
+                            "namespaces": true
+                        }
+                    },
+                    "sink": {
+                        "type": "JsonSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "JsonWriteSettings"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "TAG_DB_Metadata_XML",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "TAG_DB_JSON",
+                        "type": "DatasetReference"
+                    }
+                ]
+            },
+            {
+                "name": "Generate TAG DB Metadata",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Convert TAG DB XML METADATA to JSON",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Purview_TAG_DB_Scan",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "out_file": {
+                            "value": "pccsa_main/incoming",
+                            "type": "string"
+                        },
+                        "blob_container_name": {
+                            "value": "pccsa",
+                            "type": "string"
+                        },
+                        "blob_account_name": {
+                            "value": "<tag_storage_account>",
+                            "type": "string"
+                        },
+                        "blob_relative_path": {
+                            "value": "pccsa_main/tag-db-connector/tag-db-json",
+                            "type": "string"
+                        },
+                        "app_name": {
+                            "value": "Purvew_TAG_DB_Scanner",
+                            "type": "string"
+                        },
+                        "blob_processed": {
+                            "value": "pccsa_main/tag-db-connector/tag-db-processed",
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            }
+        ],
+        "parameters": {
+            "blob_xml_path": {
+                "type": "string",
+                "defaultValue": "pccsa_main/tag-db-connector/tag-db-xml"
+            }
+        },
+        "folder": {
+            "name": "TAG-DB"
+        },
+        "annotations": []
+    }
+}

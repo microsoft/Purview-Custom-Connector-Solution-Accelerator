@@ -1,0 +1,20 @@
+{
+    "name": "Json1",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "purviewaccws-WorkspaceDefaultStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": "pccsa_main/ssis-connector/working",
+                "fileSystem": "pccsa"
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

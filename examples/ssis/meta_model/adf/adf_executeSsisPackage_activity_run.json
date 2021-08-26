@@ -1,0 +1,105 @@
+{
+  "category": "ENTITY",
+  "guid": "618e0397-61ba-801f-bf3a-12d61bde6208",
+  "createdBy": "admin",
+  "updatedBy": "admin",
+  "createTime": 1615787946026,
+  "updateTime": 1615787946026,
+  "version": 1,
+  "name": "adf_executeSsisPackage_activity_run",
+  "description": "adf_executeSsisPackage_activity_run",
+  "typeVersion": "1.0",
+  "serviceType": "Azure Data Factory",
+  "lastModifiedTS": "1",
+  "attributeDefs": [],
+  "superTypes": [
+    "adf_activity_run"
+  ],
+  "subTypes": [],
+  "relationshipAttributeDefs": [
+    {
+      "name": "outputs",
+      "typeName": "array<DataSet>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 2147483647,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "process_dataset_outputs",
+      "isLegacyAttribute": true
+    },
+    {
+      "name": "parent",
+      "typeName": "adf_process",
+      "isOptional": false,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "process_parent",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "activity",
+      "typeName": "adf_activity",
+      "isOptional": false,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "adf_activity_run_instances",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "inputs",
+      "typeName": "array<DataSet>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 2147483647,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "dataset_process_inputs",
+      "isLegacyAttribute": true
+    },
+    {
+      "name": "subProcesses",
+      "typeName": "array<adf_process>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "constraints": [
+        {
+          "type": "ownedRef"
+        }
+      ],
+      "relationshipTypeName": "process_parent",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "meanings",
+      "typeName": "array<AtlasGlossaryTerm>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+      "isLegacyAttribute": false
+    }
+  ]
+}
+Lea

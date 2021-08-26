@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AF>
+  <AFDatabase>
+    <Name>DB_Operational</Name>
+    <Description>Operational Database for monitoring Specific operational Area</Description>
+    <AFExtendedProperty>
+      <Name>DefaultPIServer</Name>
+      <Value>name_of_the_pi_server</Value>
+    </AFExtendedProperty>
+    <AFExtendedProperty>
+      <Name>DefaultPIServerID</Name>
+      <Value>12345678910</Value>
+    </AFExtendedProperty>
+    <AFElement>
+      <Name>Company_name</Name>
+      <Description>Root Element</Description>
+      <Template>Root</Template>
+      <IsAnnotated>false</IsAnnotated>
+      <Modifier>DOMAIN\username_02</Modifier>
+      <Comment></Comment>
+      <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+      <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+      <AFElement>
+        <Name>Area01</Name>
+        <Description>Element Level 02</Description>
+        <Template>Product</Template>
+        <IsAnnotated>false</IsAnnotated>
+        <Modifier>DOMAIN\username_02</Modifier>
+        <Comment></Comment>
+        <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+        <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+        <AFElement>
+          <Name>Country</Name>
+          <Description>Element Level  3</Description>
+          <Template>Region</Template>
+          <IsAnnotated>false</IsAnnotated>
+          <Modifier>DOMAIN\username</Modifier>
+          <Comment></Comment>
+          <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+          <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+          <AFElement>
+            <Name>Location 01</Name>
+            <Description>Element Level 4</Description>
+            <Template>Business Unit</Template>
+            <IsAnnotated>false</IsAnnotated>
+            <Modifier>DOMAIN\USER_03</Modifier>
+            <Comment></Comment>
+            <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+            <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+            <AFAttribute>
+              <Name>Attribute 01</Name>
+              <Description></Description>
+              <IsHidden>false</IsHidden>
+              <IsManualDataEntry>false</IsManualDataEntry>
+              <IsConfigurationItem>false</IsConfigurationItem>
+              <IsExcluded>false</IsExcluded>
+              <Trait></Trait>
+              <DefaultUOM></DefaultUOM>
+              <DisplayDigits>-5</DisplayDigits>
+              <Type>String</Type>
+              <TypeQualifier></TypeQualifier>
+              <DataReference></DataReference>
+              <ConfigString></ConfigString>
+            </AFAttribute>
+            <AFAttribute>
+              <Name>Attribute 02</Name>
+              <Description></Description>
+              <IsHidden>false</IsHidden>
+              <IsManualDataEntry>false</IsManualDataEntry>
+              <IsConfigurationItem>false</IsConfigurationItem>
+              <IsExcluded>false</IsExcluded>
+              <Trait></Trait>
+              <DefaultUOM></DefaultUOM>
+              <DisplayDigits>-5</DisplayDigits>
+              <Type>String</Type>
+              <TypeQualifier></TypeQualifier>
+              <DataReference>String Builder</DataReference>
+              <ConfigString>%Element%&amp;#xD;</ConfigString>
+            </AFAttribute>
+            <AFAttribute>
+              <Name>Attribute 02</Name>
+              <Description></Description>
+              <IsHidden>false</IsHidden>
+              <IsManualDataEntry>false</IsManualDataEntry>
+              <IsConfigurationItem>false</IsConfigurationItem>
+              <IsExcluded>false</IsExcluded>
+              <Trait></Trait>
+              <DefaultUOM></DefaultUOM>
+              <DisplayDigits>2</DisplayDigits>
+              <Type>Decimal</Type>
+              <TypeQualifier></TypeQualifier>
+              <DataReference></DataReference>
+              <ConfigString></ConfigString>
+            </AFAttribute>
+            <AFElement>
+              <Name>Sub Location 01</Name>
+              <Description></Description>
+              <Template>Tamplate 03</Template>
+              <IsAnnotated>false</IsAnnotated>
+              <Modifier>DOMAIN\username</Modifier>
+              <Comment></Comment>
+              <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+              <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+              <AFElementCategoryRef>Category Type 01</AFElementCategoryRef>
+              <AFAttribute>
+                <Name>Alarme</Name>
+                <Description></Description>
+                <IsHidden>false</IsHidden>
+                <IsManualDataEntry>false</IsManualDataEntry>
+                <IsConfigurationItem>false</IsConfigurationItem>
+                <IsExcluded>false</IsExcluded>
+                <Trait></Trait>
+                <DefaultUOM></DefaultUOM>
+                <DisplayDigits>-5</DisplayDigits>
+                <Type>Double</Type>
+                <TypeQualifier></TypeQualifier>
+                <Status>Good</Status>
+                <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                <Value>17</Value>
+                <DataReference></DataReference>
+                <ConfigString></ConfigString>
+              </AFAttribute>
+              <AFAttribute>
+                <Name>Group</Name>
+                <Description></Description>
+                <IsHidden>false</IsHidden>
+                <IsManualDataEntry>false</IsManualDataEntry>
+                <IsConfigurationItem>false</IsConfigurationItem>
+                <IsExcluded>false</IsExcluded>
+                <Trait></Trait>
+                <DefaultUOM></DefaultUOM>
+                <DisplayDigits>-5</DisplayDigits>
+                <Type>AFEnumerationValue</Type>
+                <TypeQualifier>EnumerationSets[Goup 01]</TypeQualifier>
+                <Value></Value>
+                <DataReference></DataReference>
+                <ConfigString></ConfigString>
+              </AFAttribute>
+              <AFAttribute>
+                <Name>Controller</Name>
+                <Description></Description>
+                <IsHidden>false</IsHidden>
+                <IsManualDataEntry>false</IsManualDataEntry>
+                <IsConfigurationItem>false</IsConfigurationItem>
+                <IsExcluded>false</IsExcluded>
+                <Trait></Trait>
+                <DefaultUOM></DefaultUOM>
+                <DisplayDigits>-5</DisplayDigits>
+                <Type>AFEnumerationValue</Type>
+                <TypeQualifier>EnumerationSets[On/Off]</TypeQualifier>
+                <Value></Value>
+                <DataReference></DataReference>
+                <ConfigString></ConfigString>
+              </AFAttribute>
+              <AFAttribute>
+                <Name>Availibility Average</Name>
+                <Description></Description>
+                <IsHidden>false</IsHidden>
+                <IsManualDataEntry>false</IsManualDataEntry>
+                <IsConfigurationItem>false</IsConfigurationItem>
+                <IsExcluded>false</IsExcluded>
+                <Trait></Trait>
+                <DefaultUOM>%</DefaultUOM>
+                <DisplayDigits>-5</DisplayDigits>
+                <Type>Double</Type>
+                <TypeQualifier></TypeQualifier>
+                <DataReference>PI Point</DataReference>
+                <ConfigString>\\name_of_the_pi_server?server_id\Location 03.Availibility Average?43257</ConfigString>
+              </AFAttribute>
+              <AFAttribute>
+                <Name>Count</Name>
+                <Description></Description>
+                <IsHidden>false</IsHidden>
+                <IsManualDataEntry>false</IsManualDataEntry>
+                <IsConfigurationItem>false</IsConfigurationItem>
+                <IsExcluded>false</IsExcluded>
+                <Trait></Trait>
+                <DefaultUOM></DefaultUOM>
+                <DisplayDigits>-5</DisplayDigits>
+                <Type>Double</Type>
+                <TypeQualifier></TypeQualifier>
+                <Status>Good</Status>
+                <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                <Value>145</Value>
+                <DataReference></DataReference>
+                <ConfigString></ConfigString>
+              </AFAttribute>
+              <AFAttribute>
+                <Name>Name</Name>
+                <Description></Description>
+                <IsHidden>false</IsHidden>
+                <IsManualDataEntry>false</IsManualDataEntry>
+                <IsConfigurationItem>false</IsConfigurationItem>
+                <IsExcluded>false</IsExcluded>
+                <Trait></Trait>
+                <DefaultUOM></DefaultUOM>
+                <DisplayDigits>-5</DisplayDigits>
+                <Type>String</Type>
+                <TypeQualifier></TypeQualifier>
+                <DataReference>String Builder</DataReference>
+                <ConfigString>%Element%</ConfigString>
+              </AFAttribute>
+              <AFElement>
+                <Name>Last Level 01</Name>
+                <Description></Description>
+                <Template>Last Tamplate 03</Template>
+                <IsAnnotated>false</IsAnnotated>
+                <Modifier>DOMAIN\username</Modifier>
+                <Comment></Comment>
+                <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+                <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+                <AFAttribute>
+                  <Name>Alarme</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <Status>Good</Status>
+                  <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                  <Value>17</Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Group</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>AFEnumerationValue</Type>
+                  <TypeQualifier>EnumerationSets[Goup 01]</TypeQualifier>
+                  <Value></Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Controller</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>AFEnumerationValue</Type>
+                  <TypeQualifier>EnumerationSets[On/Off]</TypeQualifier>
+                  <Value></Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Availibility Average</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM>%</DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <DataReference>PI Point</DataReference>
+                  <ConfigString>\\name_of_the_pi_server?server_id\Location 03.Availibility Average?43257</ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Count</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <Status>Good</Status>
+                  <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                  <Value>145</Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Name</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>String</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <DataReference>String Builder</DataReference>
+                  <ConfigString>%Element%</ConfigString>
+                </AFAttribute>
+                <AFAnalysis>
+                  <Name>Availibility Calc</Name>
+                  <Description></Description>
+                  <Template>Availibility Calc</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>FrozenStatus</Name>
+                  <Description></Description>
+                  <Template>FrozenStatus</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>HealthStatus</Name>
+                  <Description></Description>
+                  <Template>HealthStatus</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>LastActualization</Name>
+                  <Description></Description>
+                  <Template>LastActualization</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>Tag Bad Status</Name>
+                  <Description></Description>
+                  <Template>Tag Bad Status</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>Value Filtered</Name>
+                  <Description></Description>
+                  <Template>Value Filtered</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+              </AFElement>
+              <AFElement>
+                <Name>Last Level 02</Name>
+                <Description></Description>
+                <Template>Last Tamplate 03</Template>
+                <IsAnnotated>false</IsAnnotated>
+                <Modifier>DOMAIN\username</Modifier>
+                <Comment></Comment>
+                <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+                <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+                <AFAttribute>
+                  <Name>Alarme</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <Status>Good</Status>
+                  <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                  <Value>17</Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Group</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>AFEnumerationValue</Type>
+                  <TypeQualifier>EnumerationSets[Goup 01]</TypeQualifier>
+                  <Value></Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Controller</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>AFEnumerationValue</Type>
+                  <TypeQualifier>EnumerationSets[On/Off]</TypeQualifier>
+                  <Value></Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Availibility Average</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM>%</DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <DataReference>PI Point</DataReference>
+                  <ConfigString>\\name_of_the_pi_server?server_id\Location 03.Availibility Average?43257</ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Count</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <Status>Good</Status>
+                  <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                  <Value>145</Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Name</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>String</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <DataReference>String Builder</DataReference>
+                  <ConfigString>%Element%</ConfigString>
+                </AFAttribute>
+                <AFAnalysis>
+                  <Name>Availibility Calc</Name>
+                  <Description></Description>
+                  <Template>Availibility Calc</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>FrozenStatus</Name>
+                  <Description></Description>
+                  <Template>FrozenStatus</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>HealthStatus</Name>
+                  <Description></Description>
+                  <Template>HealthStatus</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>LastActualization</Name>
+                  <Description></Description>
+                  <Template>LastActualization</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>Tag Bad Status</Name>
+                  <Description></Description>
+                  <Template>Tag Bad Status</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>Value Filtered</Name>
+                  <Description></Description>
+                  <Template>Value Filtered</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+              </AFElement>
+              <AFElement>
+                <Name>Last Level 03</Name>
+                <Description></Description>
+                <Template>Last Tamplate 03</Template>
+                <IsAnnotated>false</IsAnnotated>
+                <Modifier>DOMAIN\username</Modifier>
+                <Comment></Comment>
+                <EffectiveDate>1970-01-01T00:00:00Z</EffectiveDate>
+                <ObsoleteDate>9999-12-31T23:59:59Z</ObsoleteDate>
+                <AFAttribute>
+                  <Name>Alarme</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <Status>Good</Status>
+                  <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                  <Value>17</Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Group</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>AFEnumerationValue</Type>
+                  <TypeQualifier>EnumerationSets[Goup 01]</TypeQualifier>
+                  <Value></Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Controller</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>AFEnumerationValue</Type>
+                  <TypeQualifier>EnumerationSets[On/Off]</TypeQualifier>
+                  <Value></Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Availibility Average</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM>%</DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <DataReference>PI Point</DataReference>
+                  <ConfigString>\\name_of_the_pi_server?server_id\Location 03.Availibility Average?43257</ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Count</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>Double</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <Status>Good</Status>
+                  <Timestamp>1970-01-01T00:00:00Z</Timestamp>
+                  <Value>145</Value>
+                  <DataReference></DataReference>
+                  <ConfigString></ConfigString>
+                </AFAttribute>
+                <AFAttribute>
+                  <Name>Name</Name>
+                  <Description></Description>
+                  <IsHidden>false</IsHidden>
+                  <IsManualDataEntry>false</IsManualDataEntry>
+                  <IsConfigurationItem>false</IsConfigurationItem>
+                  <IsExcluded>false</IsExcluded>
+                  <Trait></Trait>
+                  <DefaultUOM></DefaultUOM>
+                  <DisplayDigits>-5</DisplayDigits>
+                  <Type>String</Type>
+                  <TypeQualifier></TypeQualifier>
+                  <DataReference>String Builder</DataReference>
+                  <ConfigString>%Element%</ConfigString>
+                </AFAttribute>
+                <AFAnalysis>
+                  <Name>Availibility Calc</Name>
+                  <Description></Description>
+                  <Template>Availibility Calc</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>FrozenStatus</Name>
+                  <Description></Description>
+                  <Template>FrozenStatus</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>HealthStatus</Name>
+                  <Description></Description>
+                  <Template>HealthStatus</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>LastActualization</Name>
+                  <Description></Description>
+                  <Template>LastActualization</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>Tag Bad Status</Name>
+                  <Description></Description>
+                  <Template>Tag Bad Status</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+                <AFAnalysis>
+                  <Name>Value Filtered</Name>
+                  <Description></Description>
+                  <Template>Value Filtered</Template>
+                  <CaseTemplate></CaseTemplate>
+                  <OutputTime></OutputTime>
+                  <Status>Enabled</Status>
+                  <PublishResults>false</PublishResults>
+                  <Priority>High</Priority>
+                  <MaxQueueSize>0</MaxQueueSize>
+                  <GroupID>0</GroupID>
+                  <Target>
+                    <AFElementRef>Company_name\Area01\Country\Location 02\Location 03\Element 01</AFElementRef>
+                  </Target>
+                  <SecurityAccessControl>Administrators:A(r,w,rd,wd,d,x,a,s,so,an)|Engineers:A(r,w,rd,wd,d,x,s,so,an)|World:A(r,rd)|Asset Analytics:A(r,w,rd,wd,x,an)|Asset Analytics Recalculation:A(x)|Notifications:A(r,w,rd,wd,an)|PIVisionService:A(r,w,rd,wd,d,x,a,s,so,an)|RTQP Engine:A(r,rd)|TECHNOLOGY-ADMINISTRATOR:A(r,w,rd,wd,d,x,a,s,so,an)|APPLICATION-GEOTECDATAGATHERING:A(r,w,rd,wd,d,x,a,s,so,an)|GEOTECHNICS-BASICOPERATOR:A(r,rd)|GEOTECHNICS-NORMATIVE:A(r,w,rd,wd,d,x,a,s,so,an)|TECHNOLOGY-BASICOPERATOR:A(r,rd)</SecurityAccessControl>
+                </AFAnalysis>
+              </AFElement>
+            </AFElement>
+          </AFElement>
+        </AFElement>
+      </AFElement>
+    </AFElement>
+  </AFDatabase>
+</AF>

@@ -1,0 +1,505 @@
+{
+    "name": "SSIS_Package_Pipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "SSIS Parameters",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Set SQL Con Str",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set ADLS Key",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set SQL PW",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "SSISDB_Get_Params",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "blob_file_path": {
+                            "value": "pccsa_main/ssis-connector/ssis-package/pulled_params.txt",
+                            "type": "string"
+                        },
+                        "server": {
+                            "value": "<tag_vm_name_or_ip>,1433",
+                            "type": "string"
+                        },
+                        "database": {
+                            "value": "purview-sqlmi-db",
+                            "type": "string"
+                        },
+                        "username": {
+                            "value": "<tag_vm_user_name>",
+                            "type": "string"
+                        },
+                        "password": {
+                            "value": {
+                                "value": "@variables('SQL-PW')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "driver": {
+                            "value": "{ODBC Driver 17 for SQL Server}",
+                            "type": "string"
+                        },
+                        "container": {
+                            "value": "pccsa",
+                            "type": "string"
+                        },
+                        "blob_account_name": {
+                            "value": "<tag_blob_account_name>",
+                            "type": "string"
+                        },
+                        "blob_account_key": {
+                            "value": {
+                                "value": "@variables('ADLS-Key')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "SSISProject": {
+                            "value": "PurviewSSISTest",
+                            "type": "string"
+                        },
+                        "execution_id_path": {
+                            "value": "pccsa_main/ssis-connector/execution-id/",
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            },
+            {
+                "name": "if_new_package",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "SSIS Parameters",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@activity('SSIS Parameters').output.status.Output.result.exitValue",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "SSIS Package transform to JSON",
+                            "type": "Copy",
+                            "dependsOn": [
+                                {
+                                    "activity": "PowerShell_WebHook",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "source": {
+                                    "type": "XmlSource",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSReadSettings",
+                                        "recursive": true,
+                                        "wildcardFolderPath": "pccsa_main/ssis-connector/ssis-package",
+                                        "wildcardFileName": "*.dtsx",
+                                        "enablePartitionDiscovery": false
+                                    },
+                                    "formatSettings": {
+                                        "type": "XmlReadSettings",
+                                        "validationMode": "none",
+                                        "namespaces": true
+                                    }
+                                },
+                                "sink": {
+                                    "type": "JsonSink",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSWriteSettings"
+                                    },
+                                    "formatSettings": {
+                                        "type": "JsonWriteSettings"
+                                    }
+                                },
+                                "enableStaging": false
+                            },
+                            "inputs": [
+                                {
+                                    "referenceName": "Xml1",
+                                    "type": "DatasetReference"
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "referenceName": "Json1",
+                                    "type": "DatasetReference"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "SSIS Connectors transform to JSON",
+                            "type": "Copy",
+                            "dependsOn": [
+                                {
+                                    "activity": "PowerShell_WebHook",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "source": {
+                                    "type": "XmlSource",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSReadSettings",
+                                        "recursive": true,
+                                        "wildcardFolderPath": "pccsa_main/ssis-connector/ssis-package",
+                                        "wildcardFileName": "*.conmgr",
+                                        "enablePartitionDiscovery": false
+                                    },
+                                    "formatSettings": {
+                                        "type": "XmlReadSettings",
+                                        "validationMode": "none",
+                                        "namespaces": true
+                                    }
+                                },
+                                "sink": {
+                                    "type": "JsonSink",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSWriteSettings"
+                                    },
+                                    "formatSettings": {
+                                        "type": "JsonWriteSettings"
+                                    }
+                                },
+                                "enableStaging": false
+                            },
+                            "inputs": [
+                                {
+                                    "referenceName": "Xml2",
+                                    "type": "DatasetReference"
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "referenceName": "Json1",
+                                    "type": "DatasetReference"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "PowerShell_WebHook",
+                            "type": "WebHook",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "url": "<tag_web_hook_uri>",
+                                "method": "POST",
+                                "body": {
+                                    "value": "@json(concat('{\n\"StorageAccountName\":\"', pipeline().parameters.StorageAccountName, '\", \n\"FileSystemName\":\"', pipeline().parameters.FileSystemName,'\",\n\"FolderName\":\"', pipeline().parameters.FolderName, '\",\n\"ProjectName\":\"', pipeline().parameters.ProjectName, '\",\n\"VaultName\":\"', pipeline().parameters.VaultName, '\",\n\"ADLSecretName\":\"', variables('ADLS-Key') ,'\",\n\"SQLSecretName\":\"', variables('SQL-Conn-Str'),'\",\n\"dirname\":\"', pipeline().parameters.dirname, '\",\n}') )",
+                                    "type": "Expression"
+                                },
+                                "timeout": "00:02:30",
+                                "reportStatusOnCallBack": true
+                            }
+                        },
+                        {
+                            "name": "SSIS Scan",
+                            "type": "SynapseNotebook",
+                            "dependsOn": [
+                                {
+                                    "activity": "SSIS Package transform to JSON",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                },
+                                {
+                                    "activity": "SSIS Connectors transform to JSON",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "notebook": {
+                                    "referenceName": "SSIS_Scan_Package",
+                                    "type": "NotebookReference"
+                                },
+                                "parameters": {
+                                    "SSIS_AdlsAccountName": {
+                                        "value": {
+                                            "value": "@pipeline().parameters.StorageAccountName",
+                                            "type": "Expression"
+                                        },
+                                        "type": "string"
+                                    },
+                                    "SSIS_AdlsConatinerName": {
+                                        "value": {
+                                            "value": "@pipeline().parameters.FileSystemName",
+                                            "type": "Expression"
+                                        },
+                                        "type": "string"
+                                    },
+                                    "SSIS_PackageFileName": {
+                                        "value": {
+                                            "value": "Package.dtsx.json",
+                                            "type": "Expression"
+                                        },
+                                        "type": "string"
+                                    },
+                                    "SISS_AppName": {
+                                        "value": {
+                                            "value": "@pipeline().parameters.ProjectName",
+                                            "type": "Expression"
+                                        },
+                                        "type": "string"
+                                    }
+                                },
+                                "snapshot": true
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "KV Get SQL Connection String",
+                "type": "WebActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": "<tag_sql_con_str_uri>?api-version=7.0",
+                    "connectVia": {
+                        "referenceName": "AutoResolveIntegrationRuntime",
+                        "type": "IntegrationRuntimeReference"
+                    },
+                    "method": "GET",
+                    "authentication": {
+                        "type": "MSI",
+                        "resource": "https://vault.azure.net"
+                    }
+                }
+            },
+            {
+                "name": "KV Get Storage Account Key",
+                "type": "WebActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": "<tag_storage_account_key_uri>?api-version=7.0",
+                    "connectVia": {
+                        "referenceName": "AutoResolveIntegrationRuntime",
+                        "type": "IntegrationRuntimeReference"
+                    },
+                    "method": "GET",
+                    "authentication": {
+                        "type": "MSI",
+                        "resource": "https://vault.azure.net"
+                    }
+                }
+            },
+            {
+                "name": "KV Get SQL Password",
+                "type": "WebActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": "<tag_sql_pwd_uri>?api-version=7.0",
+                    "connectVia": {
+                        "referenceName": "AutoResolveIntegrationRuntime",
+                        "type": "IntegrationRuntimeReference"
+                    },
+                    "method": "GET",
+                    "authentication": {
+                        "type": "MSI",
+                        "resource": "https://vault.azure.net"
+                    }
+                }
+            },
+            {
+                "name": "Set SQL Con Str",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "KV Get SQL Connection String",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "SQL-Conn-Str",
+                    "value": {
+                        "value": "@activity('KV Get SQL Connection String').output.value",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Set ADLS Key",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "KV Get Storage Account Key",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "ADLS-Key",
+                    "value": {
+                        "value": "@activity('KV Get Storage Account Key').output.value",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Set SQL PW",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "KV Get SQL Password",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "SQL-PW",
+                    "value": {
+                        "value": "@activity('KV Get SQL Password').output.value",
+                        "type": "Expression"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "StorageAccountName": {
+                "type": "string",
+                "defaultValue": "<tag_blob_account_name>"
+            },
+            "FileSystemName": {
+                "type": "string",
+                "defaultValue": "pccsa"
+            },
+            "FolderName": {
+                "type": "string",
+                "defaultValue": "ssistest"
+            },
+            "ProjectName": {
+                "type": "string",
+                "defaultValue": "PurviewSSISTest"
+            },
+            "VaultName": {
+                "type": "string",
+                "defaultValue": "<tag_key_vault_name>"
+            },
+            "ADLSecretName": {
+                "type": "string",
+                "defaultValue": "storage_account_key"
+            },
+            "SQLSecretName": {
+                "type": "string",
+                "defaultValue": "SQL-Connection-String"
+            },
+            "dirname": {
+                "type": "string",
+                "defaultValue": "pccsa_main/ssis-connector/ssis-package/"
+            }
+        },
+        "variables": {
+            "IsNewSsisPkg": {
+                "type": "Boolean"
+            },
+            "SQL-Conn-Str": {
+                "type": "String"
+            },
+            "ADLS-Key": {
+                "type": "String"
+            },
+            "SQL-PW": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "SSIS Example"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-05-17T23:19:40Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

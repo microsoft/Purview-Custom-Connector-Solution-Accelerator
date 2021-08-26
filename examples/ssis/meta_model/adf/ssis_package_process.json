@@ -1,0 +1,88 @@
+{
+  "category": "ENTITY",
+  "guid": "86316cc5-78b6-dea4-dbf7-2d0f3d3589b9",
+  "createdBy": "admin",
+  "updatedBy": "admin",
+  "createTime": 1615787948725,
+  "updateTime": 1615787948725,
+  "version": 1,
+  "name": "ssis_package_process",
+  "description": "ssis_package_process",
+  "typeVersion": "1.0",
+  "serviceType": "SQL Server Integration Services",
+  "options": {
+    "defaultRenderedLineage": "parent"
+  },
+  "lastModifiedTS": "1",
+  "attributeDefs": [
+    {
+      "name": "columnMapping",
+      "typeName": "string",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false
+    }
+  ],
+  "superTypes": [
+    "Process"
+  ],
+  "subTypes": [],
+  "relationshipAttributeDefs": [
+    {
+      "name": "outputs",
+      "typeName": "array<DataSet>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 2147483647,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "process_dataset_outputs",
+      "isLegacyAttribute": true
+    },
+    {
+      "name": "parent",
+      "typeName": "ssis_package",
+      "isOptional": false,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "ssis_package_process_parent",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "inputs",
+      "typeName": "array<DataSet>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 2147483647,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "dataset_process_inputs",
+      "isLegacyAttribute": true
+    },
+    {
+      "name": "meanings",
+      "typeName": "array<AtlasGlossaryTerm>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+      "isLegacyAttribute": false
+    }
+  ]
+}

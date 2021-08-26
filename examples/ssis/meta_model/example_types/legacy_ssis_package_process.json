@@ -1,0 +1,88 @@
+{
+  "category": "ENTITY",
+  "guid": "be732dde-8ecf-45da-b5a1-afe739d10917",
+  "createdBy": "b463e44d-4c0e-4cfd-982b-0d3de4c5197e",
+  "updatedBy": "b463e44d-4c0e-4cfd-982b-0d3de4c5197e",
+  "createTime": 1620398542498,
+  "updateTime": 1620410414688,
+  "version": 4,
+  "name": "legacy_ssis_package_process_new",
+  "description": "legacy_ssis_package_process_new",
+  "typeVersion": "1.0",
+  "serviceType": "Legacy SQL Server Integration Services",
+  "options": {
+    "defaultRenderedLineage": "parent"
+  },
+  "lastModifiedTS": "4",
+  "attributeDefs": [
+    {
+      "name": "columnMapping",
+      "typeName": "string",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false
+    }
+  ],
+  "superTypes": [
+    "Process"
+  ],
+  "subTypes": [],
+  "relationshipAttributeDefs": [
+    {
+      "name": "outputs",
+      "typeName": "array<DataSet>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 2147483647,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "process_dataset_outputs",
+      "isLegacyAttribute": true
+    },
+    {
+      "name": "parent",
+      "typeName": "legacy_ssis_package_new",
+      "isOptional": false,
+      "cardinality": "SINGLE",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "legacy_ssis_package_process_new_parent",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "inputs",
+      "typeName": "array<DataSet>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 2147483647,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "dataset_process_inputs",
+      "isLegacyAttribute": true
+    },
+    {
+      "name": "meanings",
+      "typeName": "array<AtlasGlossaryTerm>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+      "isLegacyAttribute": false
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    
+    "parameters": {
+        "purviewName": {
+            "type": "string"
+        }
+    },
+
+    "variables": {
+        "location": "[resourceGroup().location]"
+    },
+
+    "resources": [
+        {
+              "name": "[parameters('purviewName')]",
+              "type": "Microsoft.Purview/accounts",
+              "apiVersion": "2020-12-01-preview",
+              "location": "[variables('location')]",
+              "identity": {
+                "type": "SystemAssigned"
+              },
+              "properties": {
+                "networkAcls": {
+                  "defaultAction": "Allow"
+                }
+              },
+              "dependsOn": [],
+              "sku": {
+                "name": "Standard",
+                "capacity": "4"
+              },
+              "tags": {}
+        },
+        { 
+            "apiVersion": "2020-10-01",
+            "name": "pid-436d2bea-3759-4494-b63b-aa95d0407e1f",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": []
+                }
+            }
+        }
+    ]
+}

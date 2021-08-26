@@ -1,0 +1,23 @@
+{
+    "name": "TAG_DB_JSON",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "purviewaccws-WorkspaceDefaultStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": {
+                    "value": "@concat(concat('tag_db',string(ticks(utcnow()))),'.json')",
+                    "type": "Expression"
+                },
+                "folderPath": "pccsa_main/tag-db-connector/tag-db-json",
+                "fileSystem": "pccsa"
+            }
+        },
+        "schema": {}
+    }
+}

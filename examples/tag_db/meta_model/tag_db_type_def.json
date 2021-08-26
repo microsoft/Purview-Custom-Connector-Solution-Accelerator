@@ -1,0 +1,649 @@
+[
+    {
+        "category": "ENTITY",
+        "name": "afdatabase",
+        "description": "AFDatabase",
+        "serviceType": "osi_pi",
+        "options": {},
+        "attributeDefs": [
+            {
+                "name": "DefaultPIServer",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": true,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "DefaultPIServerID",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": true,
+                "isIndexable": false,
+                "includeInNotification": false
+            }
+        ],
+        "superTypes": [
+            "Asset"
+        ],
+        "subTypes": [],
+        "relationshipAttributeDefs": [
+            {
+                "name": "Database",
+                "typeName": "afelement",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "afdatabase_afelement",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "meanings",
+                "typeName": "array<AtlasGlossaryTerm>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+                "isLegacyAttribute": false
+            }
+        ]
+    },
+    {
+        "category": "ENTITY",
+        "name": "afelement",
+        "description": "AFElement",
+        "serviceType": "osi_pi",
+        "options": {},
+        "attributeDefs": [
+            {
+                "name": "Template",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "IsAnnotated",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "Modifier",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "Comment",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "EffectiveDate",
+                "typeName": "date",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "ObsoleteDate",
+                "typeName": "date",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            }
+        ],
+        "superTypes": [
+            "Asset"
+        ],
+        "subTypes": [],
+        "relationshipAttributeDefs": [
+            {
+                "name": "Parent",
+                "typeName": "afelement",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "afelement_afelement",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "Element",
+                "typeName": "afattribute",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "afelement_afattribute",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "Element",
+                "typeName": "array<afdatabase>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "constraints": [
+                    {
+                        "type": "ownedRef"
+                    }
+                ],
+                "relationshipTypeName": "afdatabase_afelement",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "Element",
+                "typeName": "afanalysis",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "afelement_afanalysis",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "Child",
+                "typeName": "array<afelement>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "constraints": [
+                    {
+                        "type": "ownedRef"
+                    }
+                ],
+                "relationshipTypeName": "afelement_afelement",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "meanings",
+                "typeName": "array<AtlasGlossaryTerm>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+                "isLegacyAttribute": false
+            }
+        ]
+    },
+    {
+        "category": "ENTITY",
+        "name": "afattribute",
+        "description": "AFAttribute",
+        "serviceType": "osi_pi",
+        "options": {},
+        "attributeDefs": [
+            {
+                "name": "IsHidden",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "IsManualDataEntry",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "IsConfigurationItem",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "IsExcluded",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "Trait",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "DefaultUOM",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "DisplayDigits",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "Type",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "TypeQualifier",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "DataReference",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "ConfigString",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "Value",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "AFAttributeCategoryRef",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            }
+        ],
+        "superTypes": [
+            "Asset"
+        ],
+        "subTypes": [],
+        "relationshipAttributeDefs": [
+            {
+                "name": "Attribute",
+                "typeName": "array<afelement>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "constraints": [
+                    {
+                        "type": "ownedRef"
+                    }
+                ],
+                "relationshipTypeName": "afelement_afattribute",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "meanings",
+                "typeName": "array<AtlasGlossaryTerm>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+                "isLegacyAttribute": false
+            }
+        ]
+    },
+    {
+        "category": "ENTITY",
+        "name": "afanalysis",
+        "description": "AFAnalysis",
+        "serviceType": "osi_pi",
+        "options": {},
+        "attributeDefs": [
+            {
+                "name": "Template",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "CaseTemplate",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "OutputTime",
+                "typeName": "string",
+                "isOptional": true,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 0,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "Status",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "PublishResults",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "Priority",
+                "typeName": "string",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "MaxQueueSize",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            },
+            {
+                "name": "GroupID",
+                "typeName": "int",
+                "isOptional": false,
+                "cardinality": "SINGLE",
+                "valuesMinCount": 1,
+                "valuesMaxCount": 1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false
+            }
+        ],
+        "superTypes": [
+            "Asset"
+        ],
+        "subTypes": [],
+        "relationshipAttributeDefs": [
+            {
+                "name": "Analysis",
+                "typeName": "array<afelement>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "constraints": [
+                    {
+                        "type": "ownedRef"
+                    }
+                ],
+                "relationshipTypeName": "afelement_afanalysis",
+                "isLegacyAttribute": false
+            },
+            {
+                "name": "meanings",
+                "typeName": "array<AtlasGlossaryTerm>",
+                "isOptional": true,
+                "cardinality": "SET",
+                "valuesMinCount": -1,
+                "valuesMaxCount": -1,
+                "isUnique": false,
+                "isIndexable": false,
+                "includeInNotification": false,
+                "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+                "isLegacyAttribute": false
+            }
+        ]
+    },
+    {
+        "category": "RELATIONSHIP",
+        "name": "afdatabase_afelement",
+        "description": "AFDatabase_AFElement",
+        "serviceType": "osi_pi",
+        "attributeDefs": [],
+        "relationshipCategory": "COMPOSITION",
+        "propagateTags": "NONE",
+        "endDef1": {
+            "type": "afdatabase",
+            "name": "Element",
+            "isContainer": true,
+            "cardinality": "SET",
+            "isLegacyAttribute": false
+        },
+        "endDef2": {
+            "type": "afelement",
+            "name": "Database",
+            "isContainer": false,
+            "cardinality": "SINGLE",
+            "isLegacyAttribute": false
+        }
+    },
+    {
+        "category": "RELATIONSHIP",
+        "name": "afelement_afelement",
+        "description": "AFElement_AFElement",
+        "serviceType": "osi_pi",
+        "attributeDefs": [],
+        "relationshipCategory": "COMPOSITION",
+        "propagateTags": "NONE",
+        "endDef1": {
+            "type": "afelement",
+            "name": "Child",
+            "isContainer": true,
+            "cardinality": "SET",
+            "isLegacyAttribute": false
+        },
+        "endDef2": {
+            "type": "afelement",
+            "name": "Parent",
+            "isContainer": false,
+            "cardinality": "SINGLE",
+            "isLegacyAttribute": false
+        }
+    },
+    {
+        "category": "RELATIONSHIP",
+        "name": "afelement_afattribute",
+        "description": "AFElement_AFAttribute",
+        "serviceType": "osi_pi",
+        "attributeDefs": [],
+        "relationshipCategory": "COMPOSITION",
+        "propagateTags": "NONE",
+        "endDef2": {
+            "type": "afattribute",
+            "name": "Parent Element",
+            "isContainer": false,
+            "cardinality": "SINGLE",
+            "isLegacyAttribute": false
+        },
+        "endDef1": {
+            "type": "afelement",
+            "name": "Attribute",
+            "isContainer": true,
+            "cardinality": "SET",
+            "isLegacyAttribute": false
+        }
+    },
+    {
+        "category": "RELATIONSHIP",
+        "name": "afelement_afanalysis",
+        "description": "AFElement_AFAnalysis",
+        "serviceType": "osi_pi",
+        "attributeDefs": [],
+        "relationshipCategory": "COMPOSITION",
+        "propagateTags": "NONE",
+        "endDef2": {
+            "type": "afanalysis",
+            "name": "Reference Element",
+            "isContainer": false,
+            "cardinality": "SINGLE",
+            "isLegacyAttribute": false
+        },
+        "endDef1": {
+            "type": "afelement",
+            "name": "Analysis",
+            "isContainer": true,
+            "cardinality": "SET",
+            "isLegacyAttribute": false
+        }
+    }
+]

@@ -1,0 +1,31 @@
+{
+  "category": "RELATIONSHIP",
+  "guid": "bfbec236-da6f-d0be-7add-5ba42271bdd8",
+  "createdBy": "b463e44d-4c0e-4cfd-982b-0d3de4c5197e",
+  "updatedBy": "b463e44d-4c0e-4cfd-982b-0d3de4c5197e",
+  "createTime": 1625682387019,
+  "updateTime": 1625682387019,
+  "version": 1,
+  "name": "legacy_ssis_package_process_parent_copy",
+  "description": "legacy_ssis_package_process_parent_copy",
+  "typeVersion": "1.0",
+  "serviceType": "Legacy SQL Server Integration Services",
+  "lastModifiedTS": "1",
+  "attributeDefs": [],
+  "relationshipCategory": "COMPOSITION",
+  "propagateTags": "NONE",
+  "endDef1": {
+    "type": "legacy_ssis_package_process_copy",
+    "name": "parent",
+    "isContainer": false,
+    "cardinality": "SINGLE",
+    "isLegacyAttribute": false
+  },
+  "endDef2": {
+    "type": "legacy_ssis_package",
+    "name": "subProcesses",
+    "isContainer": true,
+    "cardinality": "SET",
+    "isLegacyAttribute": false
+  }
+}

@@ -1,0 +1,25 @@
+{
+    "name": "Trigger Load Custom Type",
+    "properties": {
+        "annotations": [],
+        "runtimeState": "Started",
+        "pipelines": [
+            {
+                "pipelineReference": {
+                    "referenceName": "Purview Load Custom Types",
+                    "type": "PipelineReference"
+                }
+            }
+        ],
+        "type": "BlobEventsTrigger",
+        "typeProperties": {
+            "blobPathBeginsWith": "/pccsa/blobs/pccsa_main/incoming",
+            "blobPathEndsWith": ".json",
+            "ignoreEmptyBlobs": true,
+            "scope": "/subscriptions/<tag_subscription_id>/resourceGroups/<tag_resource_group>/providers/Microsoft.Storage/storageAccounts/<tag_storage_account>",
+            "events": [
+                "Microsoft.Storage.BlobCreated"
+            ]
+        }
+    }
+}

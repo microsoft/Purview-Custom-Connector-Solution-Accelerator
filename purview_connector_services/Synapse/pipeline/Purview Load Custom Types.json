@@ -1,0 +1,131 @@
+{
+    "name": "Purview Load Custom Types",
+    "properties": {
+        "activities": [
+            {
+                "name": "Purview Custom Types",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "AccSecret-to-var",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": true
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Purview_Load_Entity",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "blob_container_name": {
+                            "value": "pccsa",
+                            "type": "string"
+                        },
+                        "blob_account_name": {
+                            "value": "<tag_storage_account>",
+                            "type": "string"
+                        },
+                        "blob_relative_path": {
+                            "value": "pccsa_main/incoming",
+                            "type": "string"
+                        },
+                        "app_name": {
+                            "value": "Purvew_Create_Entity_Def",
+                            "type": "string"
+                        },
+                        "purview_name": {
+                            "value": "<tag_purview_account>",
+                            "type": "string"
+                        },
+                        "TENANT_ID": {
+                            "value": "<tag_tenant_id>",
+                            "type": "string"
+                        },
+                        "CLIENT_ID": {
+                            "value": "<tag_client_id>",
+                            "type": "string"
+                        },
+                        "CLIENT_SECRET": {
+                            "value": {
+                                "value": "@variables('acc_secret')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "blob_processed": {
+                            "value": "pccsa_main/processed",
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            },
+            {
+                "name": "kv-AccSecret",
+                "type": "WebActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": true,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": "<tag_secret_uri>",
+                    "connectVia": {
+                        "referenceName": "AutoResolveIntegrationRuntime",
+                        "type": "IntegrationRuntimeReference"
+                    },
+                    "method": "GET",
+                    "authentication": {
+                        "type": "MSI",
+                        "resource": "https://vault.azure.net"
+                    }
+                }
+            },
+            {
+                "name": "AccSecret-to-var",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "kv-AccSecret",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "acc_secret",
+                    "value": {
+                        "value": "@activity('kv-AccSecret').output.value",
+                        "type": "Expression"
+                    }
+                }
+            }
+        ],
+        "variables": {
+            "acc_secret": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "Generic Connector"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-05-14T21:45:04Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

@@ -1,0 +1,67 @@
+{
+  "category": "ENTITY",
+  "guid": "a8cc9ce2-ccab-4836-8622-74224d9df934",
+  "createdBy": "b463e44d-4c0e-4cfd-982b-0d3de4c5197e",
+  "updatedBy": "b463e44d-4c0e-4cfd-982b-0d3de4c5197e",
+  "createTime": 1620398542506,
+  "updateTime": 1620410414735,
+  "version": 4,
+  "name": "legacy_ssis_package_new",
+  "description": "legacy_ssis_package_new",
+  "typeVersion": "1.0",
+  "serviceType": "Legacy SQL Server Integration Services",
+  "options": {
+    "derivedLineageSources": "[\"subProcesses\"]"
+  },
+  "lastModifiedTS": "4",
+  "attributeDefs": [
+    {
+      "name": "lastRunTime",
+      "typeName": "date",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false
+    }
+  ],
+  "superTypes": [
+    "Asset"
+  ],
+  "subTypes": [],
+  "relationshipAttributeDefs": [
+    {
+      "name": "subProcesses",
+      "typeName": "array<legacy_ssis_package_process_new>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "constraints": [
+        {
+          "type": "ownedRef"
+        }
+      ],
+      "relationshipTypeName": "legacy_ssis_package_process_new_parent",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "meanings",
+      "typeName": "array<AtlasGlossaryTerm>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+      "isLegacyAttribute": false
+    }
+  ]
+}

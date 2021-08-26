@@ -1,0 +1,23 @@
+{
+    "name": "Xml1",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "purviewaccws-WorkspaceDefaultStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Xml",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": {
+                    "value": "endswith(dtsx)",
+                    "type": "Expression"
+                },
+                "folderPath": "pccsa_main/ssis-connector/ssis-package",
+                "fileSystem": "pccsa"
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

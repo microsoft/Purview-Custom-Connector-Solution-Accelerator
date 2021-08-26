@@ -1,0 +1,19 @@
+{
+    "name": "TAG_DB_Metadata_XML",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "purviewaccws-WorkspaceDefaultStorage",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "Xml",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": "tag-db-xml-sample.xml",
+                "folderPath": "tag-db-xml",
+                "fileSystem": "pccsa"
+            }
+        }
+    }
+}

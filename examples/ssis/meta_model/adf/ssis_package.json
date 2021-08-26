@@ -1,0 +1,81 @@
+{
+  "category": "ENTITY",
+  "guid": "fd27d941-92e0-de1c-04b4-a9e59d57e68c",
+  "createdBy": "admin",
+  "updatedBy": "admin",
+  "createTime": 1615787948725,
+  "updateTime": 1615787948725,
+  "version": 1,
+  "name": "ssis_package",
+  "description": "ssis_package",
+  "typeVersion": "1.0",
+  "serviceType": "SQL Server Integration Services",
+  "options": {
+    "derivedLineageSources": "[\"subProcesses\"]"
+  },
+  "lastModifiedTS": "1",
+  "attributeDefs": [
+    {
+      "name": "lastRunTime",
+      "typeName": "date",
+      "isOptional": true,
+      "cardinality": "SINGLE",
+      "valuesMinCount": 0,
+      "valuesMaxCount": 1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false
+    }
+  ],
+  "superTypes": [
+    "Asset"
+  ],
+  "subTypes": [],
+  "relationshipAttributeDefs": [
+    {
+      "name": "associatedActivities",
+      "typeName": "array<adf_executeSsisPackage_activity>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "adf_executeSsisPackage_activity_associated_package",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "subProcesses",
+      "typeName": "array<ssis_package_process>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "constraints": [
+        {
+          "type": "ownedRef"
+        }
+      ],
+      "relationshipTypeName": "ssis_package_process_parent",
+      "isLegacyAttribute": false
+    },
+    {
+      "name": "meanings",
+      "typeName": "array<AtlasGlossaryTerm>",
+      "isOptional": true,
+      "cardinality": "SET",
+      "valuesMinCount": -1,
+      "valuesMaxCount": -1,
+      "isUnique": false,
+      "isIndexable": false,
+      "includeInNotification": false,
+      "relationshipTypeName": "AtlasGlossarySemanticAssignment",
+      "isLegacyAttribute": false
+    }
+  ]
+}
+L

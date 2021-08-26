@@ -1,0 +1,125 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    
+    "parameters": {
+        "ps_loopscript_location": {
+            "type": "string"
+        },
+        "automationName": {
+            "type": "string"
+        },
+        "runbookName": {
+            "type": "string"
+        },
+        "webhookName": {
+            "type": "string"
+        },
+        "logAnalyticsName": {
+            "type": "string"
+        },
+        "vmCredsName": {
+            "type": "string"
+        },
+        "vmAdminPassword": {
+            "type": "SecureString"
+        },
+        "vmAdminUserName": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "location": "[resourceGroup().location]"
+    },
+    "resources": [
+        {
+            "type": "microsoft.operationalinsights/workspaces",
+            "apiVersion": "2020-10-01",
+            "name": "[parameters('logAnalyticsName')]",
+            "location": "[variables('location')]",
+            "properties": {
+                "sku": {
+                    "name": "pergb2018"
+                },
+                "retentionInDays": 30,
+                "features": {
+                    "enableLogAccessUsingOnlyResourcePermissions": true
+                },
+                "workspaceCapping": {
+                    "dailyQuotaGb": -1
+                },
+                "publicNetworkAccessForIngestion": "Enabled",
+                "publicNetworkAccessForQuery": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Automation/automationAccounts",
+            "apiVersion": "2020-01-13-preview",
+            "name": "[parameters('automationName')]",
+            "location": "[variables('location')]",
+            "properties": {
+                "sku": {
+                    "name": "Basic"
+                },
+                "encryption": {
+                    "keySource": "Microsoft.Automation",
+                    "identity": {}
+                }
+            },
+            "resources":[
+                {
+                    "type": "credentials",
+                    "apiVersion": "2020-01-13-preview",
+                    "name": "[parameters('vmCredsName')]",
+                    "dependsOn": [
+                        "[parameters('automationName')]"
+                    ],
+                    "properties": {
+                        "userName": "[parameters('vmAdminUserName')]",
+                        "password": "[parameters('vmAdminPassword')]"
+                    }
+                },
+                {
+                    "type": "runbooks",
+                    "apiVersion": "2019-06-01",
+                    "name": "[parameters('runbookName')]",
+                    "location": "[variables('location')]",
+                    "dependsOn": [
+                        "[parameters('automationName')]"
+                    ],
+                    "properties": {
+                        "runbookType": "PowerShell",
+                        "logVerbose": false,
+                        "logProgress": false,
+                        "publishContentLink": { 
+                            "uri":"[parameters('ps_loopscript_location')]",
+                            "version": "1.0.0.0"               
+                        }
+                    }
+                },
+                {
+                    "type": "webhooks",
+                    "apiVersion": "2015-10-31",
+                    "name": "[parameters('webhookName')]",
+                    "dependsOn": [
+                        "[parameters('automationName')]",
+                        "[parameters('runbookName')]"
+                    ],
+                    "properties": {
+                        "isEnabled": true,
+                        "expiryTime": "2022-05-17T17:43:23.955+00:00",
+                        "runbook": {
+                            "name": "[parameters('runbookName')]"
+                        }
+                    }
+                }
+            ]
+        }  
+    ],
+    "outputs": {
+        "webhookUri": {
+            "type": "String",
+            "value": "[reference(parameters('webhookName')).uri]"
+        }
+    }
+}

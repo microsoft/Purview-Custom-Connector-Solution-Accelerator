@@ -1,0 +1,197 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    
+    "parameters": {
+        "synapseName": {
+            "type": "string"
+        },
+        "prefixName": {
+            "type": "string",
+            "maxLength": 7
+        },
+        "suffixName": {
+            "type": "string",
+            "maxLength": 9
+        },
+        "AllowAll": {
+            "type": "string",
+            "allowedValues": [
+                "true",
+                "false"
+            ],
+            "defaultValue": "true"
+        }
+    },
+
+    "variables": {
+        "location": "[resourceGroup().location]",
+        "rgId": "[resourceGroup().id]",
+        "tenantId": "[subscription().tenantId]",
+        "paramName": "[parameters('prefixName')]",
+        "uniqueName": "[substring(uniqueString(variables('rgId')),0,4)]",
+        
+        "synapseWorkspaceName": "[parameters('synapseName')]",
+        "synapseStorageName": "[replace(replace(toLower(concat(concat('synapsestrg',variables('paramName')),variables('uniqueName'))),'-',''),'_','')]",
+        "synapseStorageContainer": "data",      
+        "StorageBlobDataContributor": "ba92f5b4-2d11-453d-a403-e96b0029c9fe"
+    },
+
+    "resources": [
+          {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2019-06-01",
+            "name": "[variables('synapseStorageName')]",
+            "location": "[variables('location')]",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "isHnsEnabled": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('synapseStorageName'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('synapseStorageName'))]"
+            ],
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": false
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2019-06-01",
+            "name": "[concat(variables('synapseStorageName'), '/default/', variables('synapseStorageContainer'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', variables('synapseStorageName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', variables('synapseStorageName'))]"
+            ],
+            "properties": {
+                "publicAccess": "None"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces",
+            "apiVersion": "2020-12-01",
+            "name": "[variables('synapseWorkspaceName')]",
+            "location": "[variables('location')]",
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "defaultDataLakeStorage": {
+                    "accountUrl": "[concat('https://', variables('synapseStorageName') , '.dfs.core.windows.net')]",
+                    "filesystem": "[variables('synapseStorageContainer')]"
+                },
+                "virtualNetworkProfile": {
+                    "computeSubnetId": ""
+                },
+                "sqlAdministratorLogin": "sqladminuser"
+            },
+            "resources": [
+                {
+                    "condition": "[equals(parameters('AllowAll'),'true')]",
+                    "type": "firewallrules",
+                    "apiVersion": "2019-06-01-preview",
+                    "name": "allowAll",
+                    "location": "[variables('location')]",
+                    "dependsOn": [ "[variables('synapseWorkspaceName')]" ],
+                    "properties": {
+                      "startIpAddress": "0.0.0.0",
+                      "endIpAddress": "255.255.255.255"
+                    }
+                  }
+            ]
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/bigDataPools",
+            "apiVersion": "2020-12-01",
+            "name": "[concat(variables('synapseWorkspaceName'), '/spark1')]",
+            "location": "[variables('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', variables('synapseWorkspaceName'))]"
+            ],
+            "properties": {
+                "sparkVersion": "2.4",
+                "nodeCount": 3,
+                "nodeSize": "Medium",
+                "nodeSizeFamily": "MemoryOptimized",
+                "autoScale": {
+                    "enabled": true,
+                    "minNodeCount": 3,
+                    "maxNodeCount": 6
+                },
+                "autoPause": {
+                    "enabled": true,
+                    "delayInMinutes": 15
+                },
+                "isComputeIsolationEnabled": false,
+                "sessionLevelPackagesEnabled": false,
+                "cacheSize": 0,
+                "dynamicExecutorAllocation": {
+                    "enabled": true
+                },
+                "provisioningState": "Succeeded"
+            }
+        },
+        {
+            "scope": "[concat('Microsoft.Storage/storageAccounts/', variables('synapseStorageName'))]",
+            "type": "Microsoft.Authorization/roleAssignments",
+            "apiVersion": "2020-04-01-preview",
+            "name": "[guid(uniqueString(variables('synapseStorageName')))]",
+            "location": "[variables('location')]",
+            "dependsOn": [
+              "[variables('synapseWorkspaceName')]"
+            ],
+            "properties": {
+              "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions', variables('StorageBlobDataContributor'))]",
+              "principalId": "[reference(resourceId('Microsoft.Synapse/workspaces', variables('synapseWorkspaceName')), '2019-06-01-preview', 'Full').identity.principalId]",
+              "principalType": "ServicePrincipal"
+            }
+        },
+        { 
+            "apiVersion": "2020-10-01",
+            "name": "pid-436d2bea-3759-4494-b63b-aa95d0407e1f",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "template": {
+                    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+                    "contentVersion": "1.0.0.0",
+                    "resources": []
+                }
+            }
+        }
+    ]
+}
+
+

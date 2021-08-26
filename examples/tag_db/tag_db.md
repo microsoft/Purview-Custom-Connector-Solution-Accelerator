@@ -43,7 +43,7 @@ To use this custom connector you will need to deploy the complete 'Purview Custo
 
 1.Folder structure:
 
-![TAG DB Folder Structure](../../docs/images/tag_db_folder_structure.svg)
+<!--![TAG DB Folder Structure](../../docs/images/tag_db_folder_structure.svg)-->
 
     1.1 'tag-db-xml' - Location of the xml file exported from the TAG DB that will be used to load the tag db metadata into Azure Purview
     1.2 'tag-db-json' - Location where will be generated the conversion of the xml into a json format to be used to load meta data into Azure Purview

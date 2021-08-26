@@ -1,4 +1,4 @@
-![Purview Custom Connector Solution Accelerator Banner](assets/images/pccsa.png)
+![Purview Custom Connector Solution Accelerator Banner](./assets/images/pccsa.png)
 
 # Purview Custom Connector Solution Accelerator
 
@@ -20,7 +20,7 @@ The examples provided demonstrate how the design and services can be used to acc
 
 ### Architecture
 
-![Purview Custom Connector Solution Accelerator Design](assets/images/pccsa-design.svg)
+![Purview Custom Connector Solution Accelerator Design](./assets/images/pccsa-design.svg)
 
 This accelerator uses Azure Synapse for compute and orchestration. Getting and transforming source metadata is done using Synapse notebooks, and is orchestrated and combined with other Azure Services using Synapse pipelines. Once a solution is developed (see development process below) running the solution involves the following steps:
 
@@ -32,7 +32,7 @@ This accelerator uses Azure Synapse for compute and orchestration. Getting and t
 
 ### Connector Development Process
 
-![pccsa_dev_processing.svg](assets/images/pccsa_dev_process.svg)
+![pccsa_dev_processing.svg](./assets/images/pccsa_dev_process.svg)
 
 #### Determine data available from custom source
 

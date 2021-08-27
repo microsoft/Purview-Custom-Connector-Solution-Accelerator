@@ -79,12 +79,12 @@ For general Atlas type information review the resource list in [README.MD](../..
 
 | Attribute Name    | Data Type | Cardinality  | Optional?    | Unique? |
 | :---------------- | :-------- | :----------- | :----------- | :------ |
-| Template          | string    | Single       | not Optional | Unique  |
-| IsAnnotated       | string    | Single       | not Optional | Unique  |
-| Modifier          | string    | Single       | not Optional | Unique  |
-| Comment           | string    | Single       | not Optional | Unique  |
-| EffectiveDate     | string    | Single       | not Optional | Unique  |
-| ObsoleteDate      | date      | Single       | not Optional | Unique  |
+| Template          | string    | Single       | is Optional  | Unique  |
+| IsAnnotated       | string    | Single       | is Optional  | Unique  |
+| Modifier          | string    | Single       | is Optional  | Unique  |
+| Comment           | string    | Single       | is Optional  | Unique  |
+| EffectiveDate     | string    | Single       | is Optional  | Unique  |
+| ObsoleteDate      | date      | Single       | is Optional  | Unique  |
 
 ![AFElement](../../assets/images/afelement.svg)
 
@@ -105,7 +105,7 @@ For general Atlas type information review the resource list in [README.MD](../..
 | Trait                  | string    | Single       | is Optional  | Unique  |
 | DefaultUOM             | string    | Single       | is Optional  | Unique  |
 | DisplayDigits          | int       | Single       | not Optional | Unique  |
-| Type                   | string    | Single       | not Optional | Unique  |
+| Type                   | string    | Single       | is Optional  | Unique  |
 | TypeQualifier          | string    | Single       | is Optional  | Unique  |
 | DataReference          | string    | Single       | is Optional  | Unique  |
 | ConfigString           | string    | Single       | is Optional  | Unique  |

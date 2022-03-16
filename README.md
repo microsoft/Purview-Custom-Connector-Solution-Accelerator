@@ -1,3 +1,12 @@
+---
+page_type: sample
+languages:
+- python
+- bash
+products:
+- azure-purview
+- azure-synapse-analytics
+---
 ![Purview Custom Connector Solution Accelerator Banner](./assets/images/pccsa.png)
 
 # Purview Custom Connector Solution Accelerator

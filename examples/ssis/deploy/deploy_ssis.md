@@ -18,13 +18,13 @@ Follow the instructions for deploying the base solution under [purview_connector
 
   ![upload files](../../../assets/images/upload_with_cloud_console.png)
 
-  * Choose the "Manage file share" option, navigate to the PurviewACC/examples/ssis/deploy directory and copy the settings.sh file into this directory
+  * Choose the "Manage file share" option, navigate to the Purview-Custom-Connector-Solution-Accelerator/examples/ssis/deploy directory and copy the settings.sh file into this directory
   
   ![cloud console directory](../../../assets/images/upload_file_to_cloud_console_directory.png)
 
   ![upload file dialog](../../../assets/images/upload_file_dialog.png)
 
-  * navigate to the PurviewACC/examples/ssis/deploy directory and run the deploy_ssis.sh script (./deploy_ssis.sh)
+  * navigate to the Purview-Custom-Connector-Solution-Accelerator/examples/ssis/deploy directory and run the deploy_ssis.sh script (./deploy_ssis.sh)
 
 ## Configure the SQL Server VM
 

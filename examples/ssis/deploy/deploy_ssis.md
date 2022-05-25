@@ -138,6 +138,9 @@ The Hybrid Runbook works like SHIR does for native connectors. It runs the Power
 
 ![webhook_set_hybrid.png](../../../assets/images/runbook_credentials.png)
 
+## Running the Example Solution
+* [Follow the instructions for deploying the prerequisites, base service, and SSIS example](https://github.com/microsoft/Purview-Custom-Connector-Solution-Accelerator/blob/master/examples/ssis/ssis.md#running-the-example-solution)
+
 ### Hybrid Runbook references
 
 * [Configure identity](https://blog.ctglobalservices.com/azure/jgs/azure-automation-setting-run-as-account-on-hybrid-worker-groups/)

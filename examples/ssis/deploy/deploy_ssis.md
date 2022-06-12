@@ -18,13 +18,13 @@ Follow the instructions for deploying the base solution under [purview_connector
 
   ![upload files](../../../assets/images/upload_with_cloud_console.png)
 
-  * Choose the "Manage file share" option, navigate to the PurviewACC/examples/ssis/deploy directory and copy the settings.sh file into this directory
+  * Choose the "Manage file share" option, navigate to the Purview-Custom-Connector-Solution-Accelerator/examples/ssis/deploy directory and copy the settings.sh file into this directory
   
   ![cloud console directory](../../../assets/images/upload_file_to_cloud_console_directory.png)
 
   ![upload file dialog](../../../assets/images/upload_file_dialog.png)
 
-  * navigate to the PurviewACC/examples/ssis/deploy directory and run the deploy_ssis.sh script (./deploy_ssis.sh)
+  * navigate to the Purview-Custom-Connector-Solution-Accelerator/examples/ssis/deploy directory and run the deploy_ssis.sh script (./deploy_ssis.sh)
 
 ## Configure the SQL Server VM
 
@@ -76,12 +76,12 @@ Follow the instructions for deploying the base solution under [purview_connector
 
   * Install the [SSIS Azure Feature Pack](https://www.microsoft.com/en-us/download/details.aspx?id=100430) (x64 version). Be sure you have disabled IE enhanced security from the Server panel as mentioned above
 * Sample Data
-  * Copy all .sql files under PurviewACC\examples\ssis\example_data to a folder on the virutal machine (e.g. c:\sql_files)
+  * Copy all .sql files under Purview-Custom-Connector-Solution-Accelerator\examples\ssis\example_data to a folder on the virutal machine (e.g. c:\sql_files)
   * On the VM, within SSMS, choose File->Open->File and open the CreateDb.sql script.  Execute the script to create the purview-sqlmi-db database
   * Repeat the above step running the CreateCustomer.sql and CreateMovies.sql scripts
 * Import SSIS Project
   * Open file explorer and create an ssis_packages directory under c:
-  * Copy the PurviewACC/examples/ssis/example_ssis_project/simple_example_ssis_project.ispac and paste into the ssis_packages directory you created on the VM
+  * Copy the Purview-Custom-Connector-Solution-Accelerator/examples/ssis/example_ssis_project/PurviewSSISTest.ispac and paste into the ssis_packages directory you created on the VM
   * Use [isdeploymentwizard.exe](https://docs.microsoft.com/en-us/sql/integration-services/packages/deploy-integration-services-ssis-projects-and-packages?view=sql-server-ver15) (Find by typing "isdeploymentwizard at start menu) to import the project
   * Go to "Select Source", select "Project Deployment" and browse for the .ispac file you created above.  Select "Next"
   * Under Select Deployment Target, choose SSIS in SQL Server to mimic on prem SQL SSIS environment
@@ -171,4 +171,4 @@ The Hybrid Runbook works like SHIR does for native connectors. It runs the Power
   
 ## Privacy
 
-To opt out of information collection as described in [privacy.md](../../../PRIVACY.md), remove the described section from all templates in the PurviewACC/examples/ssis/deploy/arm directory.
+To opt out of information collection as described in [privacy.md](../../../PRIVACY.md), remove the described section from all templates in the Purview-Custom-Connector-Solution-Accelerator/examples/ssis/deploy/arm directory.

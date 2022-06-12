@@ -23,7 +23,7 @@ git clone https://github.com/microsoft/Purview-Custom-Connector-Solution-Acceler
 
 ### Configure application settings file
 
-* Download the settings.sh.rename file from the PurviewACC/purview_connector_services/deploy directory
+* Download the settings.sh.rename file from the Purview-Custom-Connector-Solution-Accelerator/purview_connector_services/deploy directory
 * Modify the file as indicated to include a setup location, App name, client id, and secret
 * Rename the file to settings.sh
 
@@ -33,7 +33,7 @@ git clone https://github.com/microsoft/Purview-Custom-Connector-Solution-Acceler
 
   ![upload files](../../assets/images/upload_with_cloud_console.png)
 
-* Choose the "Manage file share" option, navigate to the PurviewACC/purview_connector_services/deploy directory and copy the settings.sh file into this directory
+* Choose the "Manage file share" option, navigate to the Purview-Custom-Connector-Solution-Accelerator/purview_connector_services/deploy directory and copy the settings.sh file into this directory
 
   ![cloud console directory](../../assets/images/upload_file_to_cloud_console_directory.png)
 
@@ -41,7 +41,7 @@ git clone https://github.com/microsoft/Purview-Custom-Connector-Solution-Acceler
 
 ### Run the deployment script
 
-* Navigate to the PurviewACC/purview_connector_services/deploy directory
+* Navigate to the Purview-Custom-Connector-Solution-Accelerator/purview_connector_services/deploy directory
 * Run the deploy_sa.sh script
 
 ```bash
@@ -99,4 +99,4 @@ git clone https://github.com/microsoft/Purview-Custom-Connector-Solution-Acceler
 
 ## Privacy
 
-To opt out of information collection as described in [privacy.md](../../PRIVACY.md), remove the GUID section from all templates in the PurviewACC/purview_connector_services/deploy/arm directory
+To opt out of information collection as described in [privacy.md](../../PRIVACY.md), remove the GUID section from all templates in the Purview-Custom-Connector-Solution-Accelerator/purview_connector_services/deploy/arm directory

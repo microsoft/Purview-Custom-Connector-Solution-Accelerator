@@ -136,7 +136,7 @@ The Hybrid Runbook works like SHIR does for native connectors. It runs the Power
     * Be sure to hit the 'Save' button in the next screen
     * Click into the Hybrid Worker Group -> Hybrid worker group settings and set it to use the existing custom credentials
 
-![webhook_set_hybrid.png](../../../assets/images/runbook_credentials.png)
+![Runbook_credentials.png](../../../assets/images/Runbook_credentials.png)
 
 ### Hybrid Runbook references
 

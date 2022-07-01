@@ -4,7 +4,7 @@ languages:
 - python
 - bash
 products:
-- azure-purview
+- microsoft-purview
 - azure-synapse-analytics
 ---
 ![Purview Custom Connector Solution Accelerator Banner](./assets/images/pccsa.png)
